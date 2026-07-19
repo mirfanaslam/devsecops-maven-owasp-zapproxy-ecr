@@ -81,6 +81,21 @@ sudo apt-get install -y trivy
 
 trivy --version
 
+[trivy not access like docker/jenkins its only server] access like following ways
+
+Scan a Docker image:
+trivy image nginx:latest
+
+Scan a local filesystem:
+trivy fs .
+
+Scan your current project:
+trivy fs /path/to/project
+
+Scan a Git repository:
+trivy repo https://github.com/user/repository.git
+
+
 #  Nexus....
 install on new VM
 
