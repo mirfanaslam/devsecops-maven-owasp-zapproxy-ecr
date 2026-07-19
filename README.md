@@ -28,6 +28,9 @@ sudo apt update
 sudo apt install fontconfig openjdk-21-jre
 java -version
 
+Latest installer  https://www.jenkins.io/doc/book/installing/linux/
+
+
 Long Term support
 sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
