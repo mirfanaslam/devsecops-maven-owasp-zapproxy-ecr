@@ -81,7 +81,7 @@ sudo apt-get install -y trivy
 
 trivy --version
 
-[trivy not access like docker/jenkins its only server] access like following ways
+[trivy not access like docker/jenkins its only service] access like following ways
 
 Scan a Docker image:
 trivy image nginx:latest
