@@ -102,15 +102,13 @@ sudo mkdir -p /tmp/nexus/
 cd /tmp/nexus/
 
 # Download and extract Nexus
-NEXUSURL="https://download.sonatype.com/nexus/3/nexus-3.85.0-03-linux-x86_64.tar.gz"
-sudo wget $NEXUSURL -O nexus.tar.gz
-sleep 10
-EXTOUT=$(sudo tar xzvf nexus.tar.gz)
-NEXUSDIR=$(echo $EXTOUT | cut -d '/' -f1)
-sleep 5
+wget -LO "https://download.sonatype.com/nexus/3/nexus-3.85.0-03-linux-x86_64.tar.gz"
+
+sudo tar xzvf nexus-3.85.0-03-linux-x86_64.tar.gz
+
 sudo rm -rf /tmp/nexus/nexus.tar.gz
 sudo cp -r /tmp/nexus/* /opt/nexus/
-sleep 5
+
 
 # Create nexus user and set permissions
 sudo useradd --system --no-create-home --shell /bin/false nexus
@@ -125,8 +123,8 @@ After=network.target
 [Service]
 Type=forking
 LimitNOFILE=65536
-ExecStart=/opt/nexus/$NEXUSDIR/bin/nexus start
-ExecStop=/opt/nexus/$NEXUSDIR/bin/nexus stop
+ExecStart=/opt/nexus/nexus-3.85.0-03/bin/nexus start
+ExecStop=/opt/nexus/nexus-3.85.0-03/bin/nexus stop
 User=nexus
 Restart=on-abort
 
@@ -135,7 +133,7 @@ WantedBy=multi-user.target
 EOT
 
 # Configure Nexus to run as nexus user
-sudo echo 'run_as_user="nexus"' > /opt/nexus/$NEXUSDIR/bin/nexus.rc
+sudo echo 'run_as_user="nexus"' > /opt/nexus/nexus-3.85.0-03/bin/nexus.rc
 
 # Reload systemd and start Nexus
 sudo systemctl daemon-reload
@@ -145,9 +143,10 @@ sudo systemctl enable nexus
 # Clean up
 sudo rm -rf /tmp/nexus/
 
-echo "Nexus installation completed!"
-echo "Check status with: sudo systemctl status nexus"
-echo "Default admin password is usually in: /opt/nexus/sonatype-work/nexus3/admin.password"
+Defaul username admin
+password at this path  /opt/nexus/sonatype-work/nexus3/admin.password
+
+http://ip:8081
 
 # Jenkins plungins
 
